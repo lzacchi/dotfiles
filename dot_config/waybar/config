@@ -60,16 +60,15 @@
         "max-length": 10
     },
     "custom/media": {
-        "interval": 30,
         "format": "{icon} {}",
         "return-type": "json",
-        "max-length": 20,
+        "max-length": 40,
         "format-icons": {
             "spotify": " ",
             "default": " "
         },
         "escape": true,
-        "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+	"exec": "python .config/system_scripts/media.py 2>/dev/null",
         "on-click": "playerctl play-pause"
     },
     "custom/launcher":{

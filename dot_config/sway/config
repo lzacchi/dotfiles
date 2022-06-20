@@ -19,6 +19,8 @@ set $term foot
 # Defaule web browser
 set $browser MOZ_ENABLE_WAYLAND=1 firefox 
 
+exec_always foot -e cd .config
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -31,6 +33,9 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Start notification agent
 exec_always mako
+
+# Start noisetorch on default source
+exec_always noisetorch -i
 
 ### Output configuration
 #
@@ -275,11 +280,18 @@ bar {
     swaybar_command waybar
 }
 
+#exec_always sleep 1; waybar
+
 # Multimedia keys:
 
 # Backlight Control
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10   # increase screen brightness by 20%
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10 # decrease screen brightness bt 20%
+
+# Media Controls
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
 
 # Pulse Audio Volume Controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
